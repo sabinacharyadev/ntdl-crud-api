@@ -26,7 +26,7 @@ export const updateTask = (id, updatedData) => {
   return taskModel.findByIdAndUpdate(id, updatedData);
 };
 
-// Update
+// Delete
 
 export const deleteTask = (id) => {
   return taskModel.findByIdAndDelete(id);
