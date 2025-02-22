@@ -1,8 +1,8 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import taskRouter from "./src/router/taskRouter.js";
 import { connectToMongoDb } from "./src/config/dbConfig.js";
-import "dotenv/config";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
