@@ -3,9 +3,12 @@ import express from "express";
 import cors from "cors";
 import taskRouter from "./src/router/taskRouter.js";
 import { connectToMongoDb } from "./src/config/dbConfig.js";
+import path from "path";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const _dirname = path.resolve();
 
 // middleware to parse data
 app.use(express.json());
@@ -20,6 +23,8 @@ app.use(cors(corsOption));
 // Connect to mongoDb
 connectToMongoDb();
 
+// SSR - server frontend using our node.js server
+app.use("/", express.static(path.join(_dirname, "frontendBuild")));
 // Task Routes
 app.use("/api/tasks", taskRouter);
 
