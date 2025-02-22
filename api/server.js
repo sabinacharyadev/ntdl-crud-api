@@ -1,13 +1,18 @@
 import express from "express";
-import { connectToMongoDb } from "./config/dbConfig.js";
+import taskRouter from "./src/router/taskRouter.js";
+import { connectToMongoDb } from "./src/config/dbConfig.js";
 
 const app = express();
 const PORT = 3000;
 
+// middleware to parse data
 app.use(express.json());
 
 // Connect to mongoDb
 connectToMongoDb();
+
+// Task Routes
+app.use("/api/tasks", taskRouter);
 
 app.listen(PORT, (error) => {
   error

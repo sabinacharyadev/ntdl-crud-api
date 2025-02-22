@@ -1,8 +1,9 @@
 // This file has  functions to execute queries
-import taskModel from "../schema/taskSchema";
 // these are used by end points
 // DATABASE OPERATIONS
 // CRUD OPERATIONS -> TASK RESOURCES
+
+import taskModel from "../schema/taskSchema.js";
 
 // Read
 export const getTasks = () => {
