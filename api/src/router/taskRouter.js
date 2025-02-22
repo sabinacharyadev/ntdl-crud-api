@@ -49,7 +49,7 @@ taskRouter.post("/", (req, res) => {
   createTask(req.body)
     .then((task) => {
       res.json({
-        status: "success",
+        status: "Success",
         message: "task created",
         data: task,
       });
@@ -67,7 +67,7 @@ taskRouter.put("/:id", (req, res) => {
   updateTask(req.params.id, req.body)
     .then((task) => {
       res.json({
-        status: "success",
+        status: "Success",
         message: "task updated",
         data: task,
       });
@@ -85,7 +85,7 @@ taskRouter.delete("/:id", (req, res) => {
   deleteTask(req.params.id)
     .then((task) => {
       res.json({
-        status: "success",
+        status: "Success",
         message: "task deleted",
         data: task,
       });

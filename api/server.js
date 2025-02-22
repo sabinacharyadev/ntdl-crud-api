@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import taskRouter from "./src/router/taskRouter.js";
 import { connectToMongoDb } from "./src/config/dbConfig.js";
 
@@ -8,6 +9,13 @@ const PORT = 3000;
 // middleware to parse data
 app.use(express.json());
 
+// define config for cors
+const corsOption = {
+  credential: true,
+  origin: true, // is an array with the list of whitelisted domains
+};
+
+app.use(cors(corsOption));
 // Connect to mongoDb
 connectToMongoDb();
 
