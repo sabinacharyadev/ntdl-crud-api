@@ -3,18 +3,18 @@ const TotalTime = (props) => {
   const { taskList, taskType } = props;
 
   const timeTaken = taskList.reduce((acc, curr) => {
-    return acc + parseInt(curr.taskTime);
+    return acc + parseInt(curr.timeToComplete);
   }, 0);
 
   return (
     <>
-      {taskType === "entry" && (
+      {taskType === "Entry" && (
         <>
           Total Time Spent: <span>{timeTaken}</span>
         </>
       )}
 
-      {taskType === "unwanted" && (
+      {taskType === "Unwanted" && (
         <>
           Total Time Wasted: <span>{timeTaken}</span>
         </>

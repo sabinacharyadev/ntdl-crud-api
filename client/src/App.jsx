@@ -4,7 +4,7 @@ import AddTaskForm from "./components/AddTaskForm";
 import Header from "./components/Header";
 import TaskListItem from "./components/TaskListItem";
 import TotalTime from "./components/TotalTime";
-import { deleteTaskReq, getTasks } from "./axios/taskAxios";
+import { deleteTaskReq, getTasks, updateTask } from "./axios/taskAxios";
 
 function App() {
   // const storedTaskList = JSON.parse(localStorage.getItem("taskList")) || [];
@@ -23,19 +23,17 @@ function App() {
   // initialize task list state with data from database
   // to fetch data using api, we have to send request
   useEffect(() => {
-    // localStorage.setItem("taskList", JSON.stringify(taskList));
     fetchTasks();
   }, []);
 
   // Function to switch task type
-  const switchTaskType = (taskId) => {
-    const updatedTaskList = taskList.map((task) => {
-      if (task.id === taskId) {
-        task.type = task.type === "Entry" ? "Unwanted" : "Entry";
-      }
-      return task;
-    });
-    setTaskList(updatedTaskList);
+  const switchTaskType = async (taskId, task) => {
+    const switchTask = task.type === "Entry" ? "Unwanted" : "Entry";
+    const updatedTask = { ...task, type: switchTask };
+    const response = await updateTask(taskId, updatedTask);
+    if (response.status === "Success") {
+      fetchTasks();
+    }
   };
 
   // Function to delete task type
@@ -44,8 +42,6 @@ function App() {
     if (response.status === "Success") {
       fetchTasks();
     }
-    //const updatedTaskList = taskList.filter((task) => task.id != taskId);
-    //    setTaskList(updatedTaskList);
   };
 
   return (
